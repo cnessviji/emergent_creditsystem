@@ -192,7 +192,7 @@ function App() {
     <div className="min-h-screen bg-gray-50">
       {/* Credit Animations */}
       {animations.map(anim => (
-        <CreditAnimation key={anim.id} from={anim.from} to={anim.to} />
+        <CreditAnimation key={anim.id} from={anim.from} to={anim.to} amount={anim.amount} />
       ))}
 
       {/* Top Navigation */}
