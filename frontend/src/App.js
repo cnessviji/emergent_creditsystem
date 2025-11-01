@@ -129,6 +129,9 @@ function App() {
   const handleComment = async (postId, event) => {
     if (!currentUser || !commentInputs[postId]?.trim()) return;
 
+    // Store the element reference before the async operation
+    const buttonElement = event.currentTarget;
+
     try {
       await axios.post(`${API}/post/comment`, {
         user_id: currentUser.id,
@@ -136,8 +139,8 @@ function App() {
         comment: commentInputs[postId]
       });
 
-      // Trigger animation
-      triggerCreditAnimation(event.currentTarget);
+      // Trigger animation using the stored element reference
+      triggerCreditAnimation(buttonElement);
 
       // Clear comment input
       setCommentInputs({ ...commentInputs, [postId]: "" });
