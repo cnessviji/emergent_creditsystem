@@ -99,6 +99,9 @@ function App() {
   const handleLike = async (postId, event) => {
     if (!currentUser) return;
 
+    // Store the element reference before the async operation
+    const buttonElement = event.currentTarget;
+
     try {
       const response = await axios.post(`${API}/post/like`, {
         user_id: currentUser.id,
@@ -107,7 +110,8 @@ function App() {
 
       // Only animate and update credits if action was performed (not unliking)
       if (response.data.action_performed) {
-        triggerCreditAnimation(event.currentTarget);
+        // Trigger animation using the stored element reference
+        triggerCreditAnimation(buttonElement);
 
         setTimeout(async () => {
           const creditsResponse = await axios.get(`${API}/user/${currentUser.id}/credits`);
