@@ -164,6 +164,9 @@ function App() {
   const handleCreateStory = async (event) => {
     if (!currentUser) return;
 
+    // Store the element reference before the async operation
+    const buttonElement = event.currentTarget;
+
     try {
       // Award credits for creating story
       await axios.post(`${API}/credits/award`, {
@@ -172,7 +175,8 @@ function App() {
         action: "story"
       });
 
-      triggerCreditAnimation(event.currentTarget);
+      // Trigger animation using the stored element reference
+      triggerCreditAnimation(buttonElement);
 
       setTimeout(async () => {
         const creditsResponse = await axios.get(`${API}/user/${currentUser.id}/credits`);
