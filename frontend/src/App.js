@@ -74,6 +74,9 @@ function App() {
     e.preventDefault();
     if (!newPostContent.trim() || !currentUser) return;
 
+    // Store the element reference before the async operation
+    const formElement = e.currentTarget;
+
     try {
       const response = await axios.post(`${API}/post/create`, {
         user_id: currentUser.id,
@@ -83,8 +86,8 @@ function App() {
       setPosts([response.data, ...posts]);
       setNewPostContent("");
 
-      // Trigger animation
-      triggerCreditAnimation(e.target);
+      // Trigger animation using the stored element reference
+      triggerCreditAnimation(formElement);
 
       // Update credits
       setTimeout(async () => {
