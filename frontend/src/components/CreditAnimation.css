@@ -3,28 +3,36 @@
     transform: translate3d(0, 0, 0) scale(1);
     opacity: 1;
   }
-  25% {
+  20% {
     transform: translate3d(
-      calc((var(--to-x) - var(--from-x)) * 0.25 + var(--offset-x) * 0.8),
-      calc((var(--to-y) - var(--from-y)) * 0.25 - 40px + var(--offset-y) * 0.8),
+      calc((var(--to-x) - var(--from-x)) * 0.2 + var(--offset-x) * 1),
+      calc((var(--to-y) - var(--from-y)) * 0.2 - 50px + var(--offset-y) * 1),
       0
     ) scale(1.2);
     opacity: 1;
   }
-  50% {
+  40% {
     transform: translate3d(
-      calc((var(--to-x) - var(--from-x)) * 0.5 + var(--offset-x) * 0.4),
-      calc((var(--to-y) - var(--from-y)) * 0.5 - 20px + var(--offset-y) * 0.4),
+      calc((var(--to-x) - var(--from-x)) * 0.45 + var(--offset-x) * 0.6),
+      calc((var(--to-y) - var(--from-y)) * 0.45 - 30px + var(--offset-y) * 0.6),
       0
-    ) scale(1);
+    ) scale(1.1);
     opacity: 1;
   }
-  75% {
+  65% {
     transform: translate3d(
-      calc((var(--to-x) - var(--from-x)) * 0.75 + var(--offset-x) * 0.1),
-      calc((var(--to-y) - var(--from-y)) * 0.75 + var(--offset-y) * 0.1),
+      calc((var(--to-x) - var(--from-x)) * 0.7 + var(--offset-x) * 0.25),
+      calc((var(--to-y) - var(--from-y)) * 0.7 - 10px + var(--offset-y) * 0.25),
       0
-    ) scale(0.7);
+    ) scale(0.8);
+    opacity: 1;
+  }
+  85% {
+    transform: translate3d(
+      calc((var(--to-x) - var(--from-x)) * 0.9 + var(--offset-x) * 0.05),
+      calc((var(--to-y) - var(--from-y)) * 0.9 + var(--offset-y) * 0.05),
+      0
+    ) scale(0.5);
     opacity: 0.9;
   }
   100% {
@@ -32,7 +40,7 @@
       calc(var(--to-x) - var(--from-x)),
       calc(var(--to-y) - var(--from-y)),
       0
-    ) scale(0.3);
+    ) scale(0.2);
     opacity: 0;
   }
 }
