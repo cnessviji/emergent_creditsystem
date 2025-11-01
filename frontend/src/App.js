@@ -65,10 +65,10 @@ function App() {
       amount: amount
     }]);
 
-    // Remove animation after completion
+    // Remove animation after completion (reduced timeout for smoother feel)
     setTimeout(() => {
       setAnimations(prev => prev.filter(a => a.id !== animationId));
-    }, 1500);
+    }, 1200);
   };
 
   const handleCreatePost = async (e) => {
