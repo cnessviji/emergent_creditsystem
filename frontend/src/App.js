@@ -50,7 +50,7 @@ function App() {
     }
   };
 
-  const triggerCreditAnimation = (fromElement) => {
+  const triggerCreditAnimation = (fromElement, amount = 10) => {
     const walletIcon = document.querySelector('[data-wallet-icon]');
     if (!walletIcon || !fromElement) return;
 
@@ -61,13 +61,14 @@ function App() {
     setAnimations(prev => [...prev, {
       id: animationId,
       from: { x: fromRect.left + fromRect.width / 2, y: fromRect.top + fromRect.height / 2 },
-      to: { x: toRect.left + toRect.width / 2, y: toRect.top + toRect.height / 2 }
+      to: { x: toRect.left + toRect.width / 2, y: toRect.top + toRect.height / 2 },
+      amount: amount
     }]);
 
     // Remove animation after completion
     setTimeout(() => {
       setAnimations(prev => prev.filter(a => a.id !== animationId));
-    }, 1000);
+    }, 1500);
   };
 
   const handleCreatePost = async (e) => {
