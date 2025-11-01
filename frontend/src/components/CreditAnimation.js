@@ -7,23 +7,23 @@ const CreditAnimation = ({ from, to, amount = 10 }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 1200);
+    }, 1100);
 
     return () => clearTimeout(timer);
   }, []);
 
   if (!isVisible) return null;
 
-  const duration = 1000; // 1 second
+  const duration = 900; // Slightly faster for smoothness
   
-  // Create multiple coins (5 coins for better visual effect)
-  const numCoins = 5;
+  // Create 3 coins for optimal performance and visual effect
+  const numCoins = 3;
   const coins = Array.from({ length: numCoins }, (_, index) => {
     // Calculate random offset for each coin's path
-    const randomOffsetX = (Math.random() - 0.5) * 100; // -50 to 50px
-    const randomOffsetY = (Math.random() - 0.5) * 80; // -40 to 40px
-    const delay = index * 80; // Stagger coins by 80ms
-    const randomDuration = duration + (Math.random() - 0.5) * 200; // Vary speed slightly
+    const randomOffsetX = (Math.random() - 0.5) * 60; // -30 to 30px
+    const randomOffsetY = (Math.random() - 0.5) * 50; // -25 to 25px
+    const delay = index * 60; // Stagger coins by 60ms
+    const randomDuration = duration + (Math.random() - 0.5) * 100; // Vary speed slightly
 
     return {
       id: index,
