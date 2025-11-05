@@ -14,6 +14,7 @@ function App() {
   const [newPostContent, setNewPostContent] = useState("");
   const [commentInputs, setCommentInputs] = useState({});
   const [animations, setAnimations] = useState([]);
+  const [showWalletModal, setShowWalletModal] = useState(false);
 
   // Initialize user
   useEffect(() => {
