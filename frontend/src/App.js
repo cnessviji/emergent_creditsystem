@@ -687,18 +687,4 @@ const SidebarItem = ({ icon, text, active }) => (
   </div>
 );
 
-const QuickActionItem = ({ icon, text }) => (
-  <div className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-purple-50 cursor-pointer transition">
-    <span className="text-xl">{icon}</span>
-    <span className="text-sm text-gray-700">{text}</span>
-  </div>
-);
-
-const PickItem = ({ text }) => (
-  <div className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-purple-50 cursor-pointer transition">
-    <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-    <span className="text-sm text-gray-700">{text}</span>
-  </div>
-);
-
 export default App;
