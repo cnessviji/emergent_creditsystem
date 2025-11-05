@@ -225,13 +225,14 @@ function App() {
               </button>
 
               {/* Wallet Icon with Credits */}
-              <div
+              <button
                 data-wallet-icon
-                className="flex items-center space-x-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-full shadow-lg"
+                onClick={() => setShowWalletModal(true)}
+                className="flex items-center space-x-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 cursor-pointer"
               >
                 <Wallet className="w-5 h-5" />
                 <span className="font-bold text-lg">{credits}</span>
-              </div>
+              </button>
 
               {/* User Profile */}
               <div className="flex items-center space-x-2">
