@@ -407,37 +407,271 @@ function App() {
             </div>
           </div>
         </main>
-
-        {/* Right Sidebar */}
-        <aside className="w-80 bg-white border-l border-gray-200 fixed right-0 h-full overflow-y-auto p-6">
-          <div className="mb-8">
-            <h3 className="text-xl font-bold mb-4">Quick Actions</h3>
-            <div className="space-y-3">
-              <QuickActionItem icon="📈" text="Trending" />
-              <QuickActionItem icon="📚" text="My Collection" />
-              <QuickActionItem icon="👥" text="People you follow" />
-            </div>
-          </div>
-
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold">My Picks</h3>
-              <button className="text-blue-500 text-sm">Change</button>
-            </div>
-            <div className="space-y-2">
-              <PickItem text="Conscious Leadership" />
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-bold mb-4">Explore Topics</h3>
-            <div className="space-y-2">
-              <PickItem text="Conscious News" />
-              <PickItem text="Conscious Leadership" />
-            </div>
-          </div>
-        </aside>
       </div>
+
+      {/* Wallet Modal */}
+      {showWalletModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" onClick={() => setShowWalletModal(false)}>
+          <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            {/* Modal Header */}
+            <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-8 text-white rounded-t-2xl">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-3xl font-bold mb-2">Your Credits Wallet</h2>
+                  <p className="text-purple-100">Track and redeem your earned credits</p>
+                </div>
+                <button 
+                  onClick={() => setShowWalletModal(false)}
+                  className="text-white hover:bg-white hover:bg-opacity-20 p-2 rounded-full transition"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              
+              {/* Credits Display */}
+              <div className="mt-6 bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-purple-100 text-sm mb-1">Total Credits Earned</p>
+                    <div className="flex items-center space-x-3">
+                      <Wallet className="w-8 h-8" />
+                      <span className="text-5xl font-bold">{credits}</span>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-purple-100 text-sm mb-1">Member Status</p>
+                    <span className="inline-block bg-yellow-400 text-purple-900 px-4 py-1 rounded-full text-sm font-bold">
+                      Active
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-8">
+              {/* How to Earn Credits */}
+              <section className="mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                  <span className="bg-purple-100 p-2 rounded-lg mr-3">💎</span>
+                  Ways to Increase Your Credits
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-2xl">📝</span>
+                      <div>
+                        <p className="font-semibold text-gray-900">Create a Post</p>
+                        <p className="text-sm text-gray-600">+10 credits per post</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-2xl">❤️</span>
+                      <div>
+                        <p className="font-semibold text-gray-900">Like Content</p>
+                        <p className="text-sm text-gray-600">+10 credits per like</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-2xl">💬</span>
+                      <div>
+                        <p className="font-semibold text-gray-900">Add Comment</p>
+                        <p className="text-sm text-gray-600">+10 credits per comment</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-2xl">📖</span>
+                      <div>
+                        <p className="font-semibold text-gray-900">Create Story</p>
+                        <p className="text-sm text-gray-600">+10 credits per story</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Redemption Options */}
+              <section>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                  <span className="bg-blue-100 p-2 rounded-lg mr-3">🎁</span>
+                  Credit Redemption Options
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  Redeem your earned credits for exclusive benefits and recognition within the CNESS community. 
+                  Each reward tier offers unique opportunities to enhance your professional presence and networking experience.
+                </p>
+
+                <div className="space-y-4">
+                  {/* Marketplace Discount */}
+                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl border border-green-200 hover:shadow-md transition">
+                    <div className="flex items-start space-x-4">
+                      <span className="text-3xl">🛍️</span>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-bold text-gray-900 mb-2">Marketplace Discount</h4>
+                        <p className="text-gray-700 mb-2">
+                          Unlock exclusive discounts on premium products and services available in the CNESS Marketplace. 
+                          Save on professional development courses, consulting services, and premium resources.
+                        </p>
+                        <span className="inline-block bg-green-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                          100 Credits
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Special Recognition in Newsletter */}
+                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200 hover:shadow-md transition">
+                    <div className="flex items-start space-x-4">
+                      <span className="text-3xl">📰</span>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-bold text-gray-900 mb-2">Special Recognition in Monthly Newsletter</h4>
+                        <p className="text-gray-700 mb-2">
+                          Be featured as a valued community member in our monthly newsletter, reaching thousands of 
+                          professionals across various industries. Gain visibility and recognition for your contributions.
+                        </p>
+                        <span className="inline-block bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                          200 Credits
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Exclusive Professional/Industry Featured Newsletter */}
+                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-200 hover:shadow-md transition">
+                    <div className="flex items-start space-x-4">
+                      <span className="text-3xl">📧</span>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-bold text-gray-900 mb-2">Exclusive Professional/Industry Featured Newsletter</h4>
+                        <p className="text-gray-700 mb-2">
+                          Have your professional achievements, insights, or industry expertise highlighted in a dedicated 
+                          section of our newsletter. Perfect for thought leaders and industry innovators seeking greater exposure.
+                        </p>
+                        <span className="inline-block bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                          350 Credits
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Special Interview in Newsletter */}
+                  <div className="bg-gradient-to-r from-orange-50 to-amber-50 p-6 rounded-xl border border-orange-200 hover:shadow-md transition">
+                    <div className="flex items-start space-x-4">
+                      <span className="text-3xl">🎤</span>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-bold text-gray-900 mb-2">Special Interview in Newsletter</h4>
+                        <p className="text-gray-700 mb-2">
+                          Participate in an exclusive interview published in our newsletter, where you can share your journey, 
+                          expertise, and insights with our engaged community. Establish yourself as an industry authority.
+                        </p>
+                        <span className="inline-block bg-orange-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                          500 Credits
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Social Media Feature */}
+                  <div className="bg-gradient-to-r from-pink-50 to-rose-50 p-6 rounded-xl border border-pink-200 hover:shadow-md transition">
+                    <div className="flex items-start space-x-4">
+                      <span className="text-3xl">📱</span>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-bold text-gray-900 mb-2">Special Post on CNESS Social Media Platforms</h4>
+                        <p className="text-gray-700 mb-2">
+                          Get featured across all CNESS social media channels including LinkedIn, Twitter, and Instagram. 
+                          Amplify your personal brand and reach thousands of professionals in our network.
+                        </p>
+                        <span className="inline-block bg-pink-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                          600 Credits
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* YouTube Interview */}
+                  <div className="bg-gradient-to-r from-red-50 to-orange-50 p-6 rounded-xl border border-red-200 hover:shadow-md transition">
+                    <div className="flex items-start space-x-4">
+                      <span className="text-3xl">🎥</span>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-bold text-gray-900 mb-2">Special Interview Video on YouTube</h4>
+                        <p className="text-gray-700 mb-2">
+                          Participate in a professionally produced video interview on the CNESS YouTube channel. 
+                          Share your story, expertise, and vision with our global audience in this premium content format.
+                        </p>
+                        <span className="inline-block bg-red-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                          800 Credits
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Directory Feature */}
+                  <div className="bg-gradient-to-r from-cyan-50 to-blue-50 p-6 rounded-xl border border-cyan-200 hover:shadow-md transition">
+                    <div className="flex items-start space-x-4">
+                      <span className="text-3xl">📂</span>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-bold text-gray-900 mb-2">Featured on Directory</h4>
+                        <p className="text-gray-700 mb-2">
+                          Receive premium placement in the CNESS Professional Directory with enhanced profile visibility, 
+                          priority search ranking, and featured badge. Maximize your discoverability to potential collaborators and clients.
+                        </p>
+                        <span className="inline-block bg-cyan-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                          750 Credits
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Aspired Member Recognition */}
+                  <div className="bg-gradient-to-r from-yellow-50 to-amber-50 p-6 rounded-xl border-2 border-yellow-400 hover:shadow-lg transition">
+                    <div className="flex items-start space-x-4">
+                      <span className="text-3xl">🏆</span>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-bold text-gray-900 mb-2">Recognized Aspired Member Status</h4>
+                        <p className="text-gray-700 mb-2">
+                          Achieve elite recognition as a Top Aspired Member, Inspired Contributor, or Community Leader. 
+                          This prestigious designation includes all premium benefits, lifetime recognition, and exclusive access 
+                          to leadership opportunities within the CNESS ecosystem.
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-3">
+                          <span className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                            Top Member: 1000 Credits
+                          </span>
+                          <span className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                            Inspired: 1500 Credits
+                          </span>
+                          <span className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                            Leader: 2000 Credits
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Footer Note */}
+              <div className="mt-8 p-6 bg-gray-50 rounded-xl border border-gray-200">
+                <p className="text-sm text-gray-600 text-center">
+                  <strong className="text-gray-900">Note:</strong> Credits are accumulated through active participation in the CNESS community. 
+                  To redeem your credits, please contact our community team at{" "}
+                  <a href="mailto:community@cness.com" className="text-purple-600 hover:underline font-semibold">
+                    community@cness.com
+                  </a>{" "}
+                  with your desired redemption option.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
